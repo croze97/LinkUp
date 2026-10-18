@@ -1,0 +1,14 @@
+[package]
+name = "ld60"
+version = "0.1.0"
+edition = "2021"
+description = "LD60 Rust game prototype"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

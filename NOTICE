@@ -1,0 +1,17 @@
+Third-party assets
+
+The music in web/*.opus is re-encoded (loudness-normalised Opus) from these originals.
+The game shows each tune's credit, with a link, while it plays.
+
+web/menu.opus          Title Theme (8-Bit Style) by Kat
+                       https://opengameart.org/content/title-theme-8-bit-style
+                       CC-BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+                       Changed only by re-encoding and loudness normalisation.
+web/tuninunininu.opus  TuNiNuNiNiNu, from Chiptune Loops, by MatiasVME
+                       https://opengameart.org/node/88716
+                       CC0 1.0
+web/stage1.opus        Stage 1, from 4 Chiptunes (Adventure), by Juhani Junkala (SubspaceAudio)
+                       https://opengameart.org/content/4-chiptunes-adventure
+                       CC0 1.0
+web/stage2.opus        Stage 2, same collection, same author, CC0 1.0
+web/stageselect.opus   Stage Select, same collection, same author, CC0 1.0

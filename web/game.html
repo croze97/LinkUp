@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LD60</title><link rel="stylesheet" href="/ld60/assets/ld60.css">
+<meta name="ld60-server" content="wss://ld60.qroze.com/socket">
+<script type="module" src="/ld60/assets/ld60.js"></script></head>
+<body>
+<canvas id="game" tabindex="0" aria-label="LD60 room. Click to look around; WASD moves, Space jumps."></canvas>
+<div id="hud">
+  <div id="topbar"><a href="/">qroze</a><span id="status" role="status">Loading…</span><span id="players" aria-live="polite"></span><span id="timer" role="timer" aria-label="Time since you partnered up" hidden></span><button id="chat-open" type="button" class="touch-only" aria-label="Chat">💬<span>Chat</span></button></div>
+  <form id="join" hidden>
+    <label>Name <input id="name" maxlength="16" autocomplete="nickname" placeholder="player"></label>
+    <label><input id="mic" type="checkbox"> Enable Mic (for VOIP)</label>
+    <button id="enter" type="submit" disabled>Link Up</button>
+  </form>
+  <div id="bubbles" aria-live="polite"><div id="pickup" role="button" tabindex="-1" aria-label="Pick up the Game Boy" hidden><kbd class="keys-only">E</kbd><span>Pick up</span></div>
+    <div id="keycaps" class="keys-only" hidden aria-hidden="true"><kbd data-cap="up">W</kbd><kbd data-cap="left">A</kbd><kbd data-cap="down">S</kbd><kbd data-cap="right">D</kbd><kbd data-cap="select">Z</kbd><kbd data-cap="start">C</kbd><kbd data-cap="b">L-click</kbd><kbd data-cap="a">R-click</kbd></div></div>
+  <div id="chatbar" hidden>
+    <p id="notice" role="status" hidden></p>
+    <p id="prompt" role="status" hidden></p>
+    <p id="echo" hidden></p>
+    <form id="say" hidden><input id="line" maxlength="200" autocomplete="off" placeholder="Say something…" aria-label="Chat message"></form>
+    <p id="connect" class="keys-only" role="status" hidden><kbd>F</kbd><span></span></p>
+    <div id="hints">
+      <span class="hint keys-only" title="Chat"><kbd>Enter ↵</kbd></span>
+      <span id="hint-e" class="hint keys-only labelled" title="Raise the handheld to play, or lower it" hidden><kbd>E</kbd><small>Play</small></span>
+      <span id="hint-f" class="hint keys-only labelled" title="Link cable: pull out, link, accept; hold to reel your partner in" hidden><kbd>F</kbd><small>Plug</small></span>
+    </div>
+  </div>
+  <button id="mute" type="button" hidden aria-pressed="true" aria-label="Voice: mic muted (M)"><kbd class="keys-only">M</kbd><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6"/><path class="slash" d="M4 4l16 16"/></svg></button>
+  <button id="voip" type="button" hidden data-mode="none" aria-label="Hearing: nobody (X for your partner only)"><kbd class="keys-only">X</kbd><span class="voip-mode">no voip</span></button>
+  <div id="corner"><p id="esc-hint" class="keys-only" hidden>esc releases mouse</p>
+    <p id="credit" hidden><span class="note" aria-hidden="true">♪</span><a target="_blank" rel="noopener noreferrer"><span class="title"></span> <span class="word">by</span> <span class="by"></span></a></p></div>
+  <div id="board" role="dialog" aria-label="Leaderboard" hidden><h2>Finish! Refresh the browser to play again</h2><ol></ol><p></p></div>
+  <div id="touch" hidden aria-label="Touch controls">
+    <div id="actions">
+      <button id="lower" type="button" class="touch-only">⌄ Put down</button>
+      <button id="cancel" type="button" hidden aria-label="Cancel">✕</button>
+      <button id="act" type="button" hidden></button>
+      <button id="act2" type="button" hidden></button>
+      <button id="tug" type="button" hidden aria-label="Hold to reel your partner in">Tug</button>
+    </div>
+    <div id="stick" aria-hidden="true"><div id="knob"></div></div>
+    <div id="stances" hidden>
+      <button id="crouch" type="button" aria-pressed="false">Crouch</button>
+      <button id="prone" type="button" aria-pressed="false">Prone</button>
+    </div>
+    <button id="jump" type="button" aria-label="Jump"><span class="glyph" aria-hidden="true">↑</span><span>Jump</span></button>
+    <div id="dpad" aria-label="Game Boy D-pad">
+      <button type="button" data-pad="up" aria-label="D-pad up">▲</button>
+      <button type="button" data-pad="left" aria-label="D-pad left">◀</button>
+      <button type="button" data-pad="right" aria-label="D-pad right">▶</button>
+      <button type="button" data-pad="down" aria-label="D-pad down">▼</button>
+    </div>
+    <div id="gb-system"><button type="button" data-pad="select" aria-label="Game Boy Select">SELECT</button><button type="button" data-pad="start" aria-label="Game Boy Start">START</button></div>
+    <button id="button-b" class="gb-button" type="button" data-pad="b" aria-label="Game Boy B">B</button>
+    <button id="button-a" class="gb-button" type="button" data-pad="a" aria-label="Game Boy A">A</button>
+  </div>
+  <div id="linkup" hidden role="dialog" aria-live="assertive" aria-labelledby="linkup-title">
+    <div class="plate"><span class="stripe magenta"></span><span class="stripe navy"></span><span class="led"></span>
+      <div class="lcd"><canvas id="linkup-lcd" width="160" height="144" aria-hidden="true"></canvas><div id="linkup-buttons"></div></div></div>
+    <p id="linkup-title" class="sr"></p>
+    <div id="linkup-text" class="sr"></div>
+  </div>
+  <div id="voices" hidden></div>
+</div>
+<noscript><p>This game needs JavaScript to run.</p></noscript>
+</body></html>
